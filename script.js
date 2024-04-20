@@ -1,3 +1,10 @@
+const currentDate = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+const dateHeader = document.getElementById('dateHeader');
+dateHeader.innerHTML = `<h2>Hello, today is ${formattedDate}</h2>`;
+
 const form = document.getElementById("todoform");
 const todoInput = document.getElementById("newtodo");
 const todosListEl = document.getElementById("todos-list");
@@ -15,13 +22,29 @@ let EditTodoID = -1;
 renderTodos();
 updateCounter();
 
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   saveTodo();
+//   renderTodos();
+//   updateCounter();
+//   localStorage.setItem("todos", JSON.stringify(todos));
+// });
+
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  const inputDate = new Date(todoDateInput.value);
+  const currentDate = new Date();
+  if (inputDate < currentDate) {
+    showNotification("Please enter a valid date (today or future date).");
+    return;
+  }
   saveTodo();
   renderTodos();
   updateCounter();
   localStorage.setItem("todos", JSON.stringify(todos));
 });
+
 
 document.getElementById("filterButton").addEventListener("click", () => {
   renderTodos();
@@ -101,10 +124,12 @@ function renderTodos() {
               <p class="${
                 todo.checked ? "checked" : ""
               }" data-action="check">${todo.value}</p>
-                <span class="${formattedDate.checked ? "checked" : ""}" data-action="check">${formattedDate}</span>
+                <span class="${todo.checked ? "checked" : ""}" data-action="check">${formattedDate}</span>
               <i class="bi bi-pencil-square" data-action="edit"></i>
               <i class="bi bi-trash" data-action="delete"></i>
             </div>`;
+
+            
     });
   }
 }
@@ -140,6 +165,38 @@ function checkTodo(todoID) {
   updateCounter();
   localStorage.setItem("todos", JSON.stringify(todos));
 }
+
+
+
+// function checkTodo(todoID) {
+//   todos = todos.map((todo, index) => ({
+//     value: todo.value,
+//     date: todo.date,
+//     color: todo.color,
+//     checked: index === todoID ? !todo.checked : todo.checked,
+//   }));
+
+//   // Get all todo elements in the list
+//   const todoElements = document.querySelectorAll('.todo');
+
+//   // Iterate over each todo element
+//   todoElements.forEach((todoElement, index) => {
+//     if (index === todoID) {
+//       // Toggle the checked class for the todo text
+//       const todoText = todoElement.querySelector('p');
+//       todoText.classList.toggle('checked');
+
+//       // Toggle the checked class for the date
+//       const dateSpan = todoElement.querySelector('span');
+//       dateSpan.classList.toggle('checked');
+//     }
+//   });
+
+//   renderTodos();
+//   updateCounter();
+//   localStorage.setItem("todos", JSON.stringify(todos));
+// }
+
 
 function editTodo(todoID) {
   todoInput.value = todos[todoID].value;

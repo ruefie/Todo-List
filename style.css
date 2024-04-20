@@ -2,7 +2,7 @@
 
 :root {
   --container-height: 600px;
-  --container-width: 430px;
+  --container-width:480px;
   --header-height: 200px;
 }
 
@@ -26,7 +26,7 @@ body {
   /* opacity: 0.6; */
   background-size: cover;
   /* background: rgb(139, 234, 234) ; */
-background: linear-gradient(25deg, rgb(167, 231, 231) 0%, rgb(212, 216, 240) 63%);
+background: linear-gradient(25deg, rgb(187, 238, 238) 0%, rgb(224, 227, 244) 63%);
   
 }
 
@@ -50,7 +50,7 @@ header {
 
 .imgheader img{
   display: flex;
-  width: 430px;
+  width: inherit;
   height: 200px;
   position: absolute;
   opacity: 0.6;
@@ -65,7 +65,7 @@ header {
   align-items: center;
   justify-content: center;
   color: #1a1919;
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   
 }
 .new-todo {
@@ -79,9 +79,9 @@ header {
 .new-todo form {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  gap: 1.5rem;
+  margin: 1.5rem;
+  /* margin-right: 1rem; */
   
 }
 #newtodoDate{
@@ -110,7 +110,7 @@ header {
   background-color: transparent;
   color: rgb(41, 20, 231);
   border: none;
-  border-left: 0px;
+  /* border-left: 0px; */
   /* margin-right: 20px; */
   cursor: pointer;
 }
@@ -157,7 +157,7 @@ header {
   display: flex;
   align-items: center;
   justify-items: center;
-  margin-left: 1rem;
+  margin: 1.5rem;
   margin-top: 1rem;
 
 }
@@ -244,10 +244,13 @@ input[type="text"]::-webkit-input-placeholder{
 }
 #todos-list .todo * {
   cursor: pointer;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  
+  
 }
 #todos-list .todo i {
   font-size: 0.9rem;
+  /* flex: 1; */
 }
 #todos-list .todo p {
   flex: 1;
@@ -259,6 +262,7 @@ input[type="text"]::-webkit-input-placeholder{
 }
 #todos-list .todo .bi-pencil-square {
   color: rgb(31, 177, 48);
+  margin-left: 2rem;
 }
 #todos-list .todo .bi-trash {
   color: rgb(236, 82, 82);
